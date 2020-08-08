@@ -1,4 +1,5 @@
 export default class Action {
-  static INCREMENT = "INCREMENT";
-  static DECREMENT = "DECREMENT";
+  static ADD = "ADD";
+  static DELETE = "DELETE";
+  static SET = "SET";
 }

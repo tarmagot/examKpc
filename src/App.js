@@ -1,29 +1,17 @@
 import React from "react";
 import Action from "./actions";
-import Counter from "./components/counter";
+import BoxInput from "./components/BoxInput";
 import { connect } from "react-redux";
+import { DatePicker } from "antd";
 
 import "./App.css";
 
-function App(prop) {
+function App() {
   return (
     <div className="App">
-      <Counter
-        value={prop.counter}
-        onIncrement={() => prop.increment()}
-        onDecrement={() => prop.decrement()}
-      />
+      <BoxInput title="BoxInput" />
     </div>
   );
 }
-const mapStateToProps = (state) => ({
-  counter: state.counter,
-});
 
-const mapDispatchToProps = (dispatch) => ({
-  increment: () =>
-    dispatch({ type: Action.INCREMENT, text: "INCREMENT Redux" }),
-  decrement: () =>
-    dispatch({ type: Action.DECREMENT, text: "DECREMENT Redux" }),
-});
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

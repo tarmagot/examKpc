@@ -16,6 +16,7 @@ import {
   Button,
   Table,
   Tag,
+  InputNumber,
 } from "antd";
 import { SettingOutlined } from "@ant-design/icons";
 import "antd/dist/antd.css";
@@ -32,7 +33,13 @@ const { Option } = Select;
 const dateFormat = "MM/DD/YY";
 
 function onChange(date, dateString) {}
-
+function onChangesalary(value) {
+  // console.log("changed", value);
+}
+function disabledDate(current) {
+  // Can not select days before today and today
+  return current && current < moment().endOf("day");
+}
 function Nationality() {
   const country = countryList().getData();
   return (
@@ -58,11 +65,11 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 function BoxInput(props) {
-  const [tellData, setTellData] = useState("");
+  const [tellData, setTellData] = useState("9999");
   const [country, setCountry] = useState("");
   const [editData, setEditData] = useState({});
   const { data, set_data, delete_data, add_data, title } = props;
-  console.log("test", en[country]);
+  // console.log("test", en[country]);
 
   const handleEdit = (data) => {
     const result = { ...data, type: "edit" };
@@ -71,7 +78,7 @@ function BoxInput(props) {
   //---------------------------------------------------phone start
   function PhoneCountry() {
     const country = getCountries();
-    console.log("c", country);
+    // console.log("c", country);
     return (
       <Select style={{ width: 120 }}>
         {country.map((item, index) => {
@@ -262,7 +269,11 @@ function BoxInput(props) {
                 ]}
                 className="boxline1"
               >
-                <DatePicker onChange={onChange} format={dateFormat} />
+                <DatePicker
+                  onChange={onChange}
+                  format={dateFormat}
+                  disabledDate={disabledDate}
+                />
               </Form.Item>
             </Col>
 
@@ -283,17 +294,15 @@ function BoxInput(props) {
                 <Input
                   style={{ width: "50px", textAlign: "center" }}
                   maxLength={1}
-                  type="number"
                 />
               </Form.Item>
             </Col>
 
             <label className="label_cityzen">-</label>
-            <Form.Item name="CityzenID2" className="boxline1">
+            <Form.Item name="CityzenID2" className="boxline1" type="number">
               <Input
                 style={{ width: "60px", textAlign: "center" }}
                 maxLength={4}
-                type="number"
               />
             </Form.Item>
             <label className="label_cityzen">-</label>
@@ -301,7 +310,6 @@ function BoxInput(props) {
               <Input
                 style={{ width: "50px", textAlign: "center" }}
                 maxLength={3}
-                type="number"
               />
             </Form.Item>
             <label className="label_cityzen">-</label>
@@ -316,7 +324,7 @@ function BoxInput(props) {
               <Form.Item name="CityzenID5" className="boxline1">
                 <Input
                   style={{ width: "50px", textAlign: "center" }}
-                  type="number"
+                  maxLength={1}
                 />
               </Form.Item>
             </Col>
@@ -357,7 +365,10 @@ function BoxInput(props) {
                 rules={[
                   {
                     required: true,
-                    message: "Please enter your Phone Number ",
+                    min: 9,
+                    max: 9,
+                    // pattern: "[0-9]*",
+                    message: "Please enter correct Mobile Number ",
                   },
                 ]}
               >
@@ -387,10 +398,18 @@ function BoxInput(props) {
                   {
                     required: true,
                     message: "Please enter your Expected Salary ",
+                    type: "number",
                   },
                 ]}
               >
-                <Input />
+                <InputNumber
+                  style={{ width: 150 }}
+                  formatter={(value) =>
+                    `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                  }
+                  parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
+                  onChange={onChangesalary}
+                />
               </Form.Item>
             </Col>
             <Col span={8}>

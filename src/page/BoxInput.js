@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import moment from "moment";
-import Action from "../actions"; //chang
 import { connect } from "react-redux";
 import "./BoxInput.css";
 import {
@@ -61,20 +60,18 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   set_data: (data) => dispatch({ type: "SET_DATA", data }),
   delete_data: (rowkey) => dispatch({ type: "DELETE_DATA", rowkey }),
+  delete_all: (rowkey) => dispatch({ type: "DELETE_SELECT", rowkey }),
   add_data: (data) => dispatch({ type: "ADD_DATA", data }),
 });
 
 function BoxInput(props) {
-  const [tellData, setTellData] = useState("9999");
+  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const [country, setCountry] = useState("");
   const [editData, setEditData] = useState({});
-  const { data, set_data, delete_data, add_data, title } = props;
+  const { data, set_data, delete_data, add_data, title, delete_all } = props;
+  const hasSelected = data.data.length > 0;
   // console.log("test", en[country]);
 
-  const handleEdit = (data) => {
-    const result = { ...data, type: "edit" };
-    setEditData(result);
-  };
   //---------------------------------------------------phone start
   function PhoneCountry() {
     const country = getCountries();
@@ -201,6 +198,26 @@ function BoxInput(props) {
     }
   };
 
+  const handleEdit = (data) => {
+    const result = { ...data, type: "edit" };
+    setEditData(result);
+  };
+  const onSelectChange = (selectedRowKeys) => {
+    console.log("selectedRowKeys changed: ", selectedRowKeys);
+
+    setSelectedRowKeys(selectedRowKeys);
+  };
+
+  const rowSelection = {
+    selectedRowKeys,
+    onChange: onSelectChange,
+  };
+
+  const onClickselect = () => {
+    console.log("onclick changed: ", selectedRowKeys);
+
+    delete_all(selectedRowKeys);
+  };
   return (
     <div>
       <Card style={{ width: 1000, marginTop: 20 }}>
@@ -431,12 +448,15 @@ function BoxInput(props) {
         </Form>
       </Card>
       <Card style={{ marginTop: 10 }}>
+        <Button type="primary" disabled={!hasSelected} onClick={onClickselect}>
+          DELETE
+        </Button>
         <Table
           columns={columns}
+          rowSelection={rowSelection}
           dataSource={data.data}
           rowKey={(record) => record.rowkey}
-          rowSelection={data.data}
-          pagination={{ pageSize: 5, position: ["topRight"] }}
+          pagination={{ pageSize: 3, position: ["topRight"] }}
         />
       </Card>
     </div>

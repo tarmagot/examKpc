@@ -1,23 +1,23 @@
-const loadState = () => {
-  try {
-    const serializedState = localStorage.getItem("store");
-    if (serializedState === null) {
-      return undefined;
-    } else {
-      return JSON.parse(serializedState);
-    }
-  } catch (eror) {
-    return undefined;
-  }
-};
+// const loadState = () => {
+//   try {
+//     const serializedState = localStorage.getItem("store");
+//     if (serializedState === null) {
+//       return undefined;
+//     } else {
+//       return JSON.parse(serializedState);
+//     }
+//   } catch (eror) {
+//     return undefined;
+//   }
+// };
 
-const saveState = (state) => {
-  try {
-    const serializedState = JSON.stringify(state);
-    localStorage.setItem("store", serializedState);
-  } catch (error) {
-    console.log(error.message);
-  }
-};
+// const saveState = (state) => {
+//   try {
+//     const serializedState = JSON.stringify(state);
+//     localStorage.setItem("store", serializedState);
+//   } catch (error) {
+//     console.log(error.message);
+//   }
+// };
 
-export { loadState, saveState };
+// export { loadState, saveState };

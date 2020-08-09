@@ -1,5 +1,6 @@
 export default class Action {
   static ADD = "ADD";
   static DELETE = "DELETE";
-  static SET = "SET";
+  static DELETE_SELECT = "DELETE_SELECT";
+  static SET = "SET"; //note
 }

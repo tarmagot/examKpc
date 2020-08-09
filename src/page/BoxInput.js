@@ -89,6 +89,8 @@ function BoxInput(props) {
   }
 
   //---------------------------------------------------phone end
+  //-----------------------------------------------------------------Check start
+
   //-----------------------------------------------------------------------------------tabel
   const columns = [
     {
@@ -180,6 +182,7 @@ function BoxInput(props) {
       console.log("onfi", resultData);
       console.log("in is edit");
       set_data(resultData);
+      setEditData("");
       form.resetFields();
     }
     //--------------check edit end
@@ -277,26 +280,44 @@ function BoxInput(props) {
                 label="CityzenID: "
                 className="boxline1"
               >
-                <Input style={{ width: "30px", textAlign: "center" }} />
+                <Input
+                  style={{ width: "50px", textAlign: "center" }}
+                  maxLength={1}
+                  type="number"
+                />
               </Form.Item>
             </Col>
 
             <label className="label_cityzen">-</label>
             <Form.Item name="CityzenID2" className="boxline1">
-              <Input style={{ width: "60px", textAlign: "center" }} />
+              <Input
+                style={{ width: "60px", textAlign: "center" }}
+                maxLength={4}
+                type="number"
+              />
             </Form.Item>
             <label className="label_cityzen">-</label>
             <Form.Item name="CityzenID3" className="boxline1">
-              <Input style={{ width: "50px", textAlign: "center" }} />
+              <Input
+                style={{ width: "50px", textAlign: "center" }}
+                maxLength={3}
+                type="number"
+              />
             </Form.Item>
             <label className="label_cityzen">-</label>
             <Form.Item name="CityzenID4" className="boxline1">
-              <Input style={{ width: "60px", textAlign: "center" }} />
+              <Input
+                style={{ width: "60px", textAlign: "center" }}
+                maxLength={4}
+              />
             </Form.Item>
             <label className="label_cityzen">-</label>
             <Col>
               <Form.Item name="CityzenID5" className="boxline1">
-                <Input style={{ width: "30px", textAlign: "center" }} />
+                <Input
+                  style={{ width: "50px", textAlign: "center" }}
+                  type="number"
+                />
               </Form.Item>
             </Col>
           </Row>
@@ -340,7 +361,7 @@ function BoxInput(props) {
                   },
                 ]}
               >
-                <Input style={{ marginLeft: 10 }} />
+                <Input style={{ marginLeft: 10 }} maxLength={9} type="number" />
               </Form.Item>
             </Col>
           </Row>

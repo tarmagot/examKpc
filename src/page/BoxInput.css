@@ -8,15 +8,23 @@
 } */
 
 .select-title {
-  width: 80px;
+  width: 100px;
   margin: 10px;
 }
 [data-theme="compact"] .select-title {
-  width: 65px;
+  width: 80px;
 }
 
 .title_text {
   font-size: 16px;
+}
+.label_bath {
+  margin-bottom: 5px;
+  margin-left: 10px;
+  align-self: center;
+}
+
+.label_cityzen {
 }
 
 .important {

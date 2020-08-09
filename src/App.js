@@ -1,6 +1,6 @@
 import React from "react";
 import Action from "./actions";
-import BoxInput from "./components/BoxInput";
+import BoxInput from "./page/BoxInput";
 import { connect } from "react-redux";
 import { DatePicker } from "antd";
 

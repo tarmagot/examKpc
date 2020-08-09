@@ -435,6 +435,8 @@ function BoxInput(props) {
           columns={columns}
           dataSource={data.data}
           rowKey={(record) => record.rowkey}
+          rowSelection={data.data}
+          pagination={{ pageSize: 5 }}
         />
       </Card>
     </div>

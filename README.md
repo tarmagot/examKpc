@@ -1,2 +1,2 @@
 # examKpc
-cannot deploy for plomblem https://examkpc.web.app/
+deploy for  https://examkpc.web.app/

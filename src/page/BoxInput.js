@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import moment from "moment";
+
 import { connect } from "react-redux";
 import "./BoxInput.css";
-import TableForm from "../component/TableForm";
+import ListForm from "../component/ListForm";
 import InputForm from "../component/InputForm";
 import { Card } from "antd";
 
@@ -22,28 +22,24 @@ function BoxInput(props) {
   const gethandleEdit = (dataa) => {
     setEditData(dataa);
   };
-  console.log("all data", data);
-  return (
-    <div>
-      <Card className="lading-card">
-        <InputForm
-          data={data}
-          handleSubmitedit={set_data}
-          handleSubmit={add_data}
-          editData={editData}
-          setEditData={setEditData}
-        />
-      </Card>
 
-      <Card className="lading-card list-card">
-        <TableForm
-          data={data}
-          handleDelete={delete_data}
-          delete_select={delete_select}
-          gethandleEdit={gethandleEdit}
-        />
-      </Card>
-    </div>
+  return (
+    <Card>
+      <InputForm
+        data={data}
+        handleSubmitedit={set_data}
+        handleSubmit={add_data}
+        editData={editData}
+        setedit={setEditData}
+      />
+
+      <ListForm
+        data={data}
+        handleDelete={delete_data}
+        delete_select={delete_select}
+        gethandleEdit={gethandleEdit}
+      />
+    </Card>
   );
 }
 

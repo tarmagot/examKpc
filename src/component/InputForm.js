@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import moment from "moment";
 import {
   Input,
@@ -16,10 +16,7 @@ import "antd/dist/antd.css";
 import countryList from "react-select-country-list";
 
 import "react-phone-number-input/style.css";
-import PhoneInput, {
-  getCountryCallingCode,
-  getCountries,
-} from "react-phone-number-input";
+import { getCountryCallingCode, getCountries } from "react-phone-number-input";
 import en from "react-phone-number-input/locale/en.json";
 
 const { Option } = Select;
@@ -50,11 +47,10 @@ function Nationality() {
 }
 
 const InputForm = (props) => {
-  const { data, handleSubmitedit, handleSubmit, editData, setEditData } = props;
-  const [country, setCountry] = useState("");
+  const { handleSubmitedit, handleSubmit, editData, setedit } = props;
   const [form] = Form.useForm();
 
-  function onFill() {
+  const onFill = () => {
     form.setFieldsValue({
       title: editData.title,
       Firstname: editData.Firstname,
@@ -72,7 +68,7 @@ const InputForm = (props) => {
       ExpectedSalary: editData.ExpectedSalary,
       phone: editData.phone,
     });
-  }
+  };
   if (editData !== "") {
     onFill();
   }
@@ -86,7 +82,7 @@ const InputForm = (props) => {
       };
 
       handleSubmitedit(resultData);
-      setEditData("");
+      setedit("");
       form.resetFields();
     } else {
       const rowkey = moment().unix();
@@ -116,7 +112,7 @@ const InputForm = (props) => {
   }
 
   return (
-    <Card style={{ width: 1000, marginTop: 20 }}>
+    <Card>
       <Form name="box_inputline1" onFinish={onFinish} form={form}>
         <Row>
           <Col>
@@ -301,7 +297,7 @@ const InputForm = (props) => {
           </Col>
         </Row>
         <Row>
-          <Col span={8}>
+          <Col span={5}>
             <Form.Item
               name="ExpectedSalary"
               label="Expected Salary : "
@@ -324,7 +320,7 @@ const InputForm = (props) => {
               />
             </Form.Item>
           </Col>
-          <Col span={8}>
+          <Col span={2}>
             <Form.Item name="THB" className="boxline1">
               <label>THB</label>
             </Form.Item>

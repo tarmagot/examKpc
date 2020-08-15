@@ -1,17 +1,16 @@
 import React, { useState } from "react";
-import { Card, Table, Button, Space, Form } from "antd";
+import { Card, Table, Button, Space } from "antd";
 
-export const TableForm = (props) => {
+export const ListForm = (props) => {
   const {
     data,
     handleDelete,
-    delete_all,
+    delete_select,
 
     gethandleEdit,
   } = props;
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const hasSelected = data.data.length > 0;
-  const [form] = Form.useForm();
 
   const onSelectChange = (selectedRowKeys) => {
     setSelectedRowKeys(selectedRowKeys);
@@ -23,7 +22,8 @@ export const TableForm = (props) => {
   };
 
   const onClickselect = () => {
-    delete_all(selectedRowKeys);
+    console.log("rowkey", selectedRowKeys);
+    delete_select(selectedRowKeys);
   };
 
   const handleEdit = (data) => {
@@ -62,10 +62,6 @@ export const TableForm = (props) => {
         <Space size="middle">
           <Button
             onClick={() => {
-              const edit = data.data.filter(
-                (data) => data.rowkey === record.rowkey
-              );
-
               handleEdit(record);
 
               //set_data(record.rowkey);
@@ -101,4 +97,4 @@ export const TableForm = (props) => {
   );
 };
 
-export default TableForm;
+export default ListForm;

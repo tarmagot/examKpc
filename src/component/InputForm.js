@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import moment from "moment";
 import {
   Input,
@@ -16,10 +16,7 @@ import "antd/dist/antd.css";
 import countryList from "react-select-country-list";
 
 import "react-phone-number-input/style.css";
-import PhoneInput, {
-  getCountryCallingCode,
-  getCountries,
-} from "react-phone-number-input";
+import { getCountryCallingCode, getCountries } from "react-phone-number-input";
 import en from "react-phone-number-input/locale/en.json";
 
 const { Option } = Select;
@@ -50,8 +47,8 @@ function Nationality() {
 }
 
 const InputForm = (props) => {
-  const { data, handleSubmitedit, handleSubmit, editData, setEditData } = props;
-  const [country, setCountry] = useState("");
+  const { handleSubmitedit, handleSubmit, editData, setEditData } = props;
+
   const [form] = Form.useForm();
 
   function onFill() {
@@ -116,7 +113,7 @@ const InputForm = (props) => {
   }
 
   return (
-    <Card style={{ width: 1000, marginTop: 20 }}>
+    <Card>
       <Form name="box_inputline1" onFinish={onFinish} form={form}>
         <Row>
           <Col>
@@ -301,7 +298,7 @@ const InputForm = (props) => {
           </Col>
         </Row>
         <Row>
-          <Col span={8}>
+          <Col span={5}>
             <Form.Item
               name="ExpectedSalary"
               label="Expected Salary : "
